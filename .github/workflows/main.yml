@@ -13,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        branch: stable-website
+        ref: stable-website
     - run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
