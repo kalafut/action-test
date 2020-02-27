@@ -1,11 +1,12 @@
 #on: [push]
 on:
-  label:
-    types: [created]
+  pull_request:
+    types:
+      - closed
 
 jobs:
   hello_world_job:
-    if: github.event.label.name == 'docs'
+    if: github.event.pull_request.merged && contains( github.event.pull_request.labels.*.name, 'docs')
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
