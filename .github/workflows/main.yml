@@ -2,7 +2,7 @@ on: [push]
 #on:
 #  pull_request:
 #    types:
-#      - closed
+#      - closed 
 
 jobs:
   hello_world_job:
