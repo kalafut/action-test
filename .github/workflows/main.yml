@@ -1,8 +1,8 @@
-#on: [push]
-on:
-  pull_request:
-    types:
-      - closed
+on: [push]
+#on:
+#  pull_request:
+#    types:
+#      - closed
 
 jobs:
   hello_world_job:
@@ -17,7 +17,9 @@ jobs:
     - run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git cherry-pick $GITHUB_SHA
+        echo $(git rev-parse HEAD)
+        echo "cherry picking $GITHUB_SHA"
+        git cherry-pick ${{ github.sha }}
         git push origin stable-website
 
 
