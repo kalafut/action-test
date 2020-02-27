@@ -6,7 +6,7 @@ time=$(date)
 echo ::set-output name=time::$time
 #git clone git@github.com:kalafut/action-test
 git checkout stable-website
-echo $time > blah
+echo $GITHUB_SHA > blah
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
 git add blah
