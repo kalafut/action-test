@@ -6,7 +6,7 @@ on:
 
 jobs:
   hello_world_job:
-    if: github.event.pull_request.merged && contains( github.event.pull_request.labels.*.name, 'docs')
+    #if: github.event.pull_request.merged && contains( github.event.pull_request.labels.*.name, 'docs')
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
