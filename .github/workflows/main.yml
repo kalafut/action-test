@@ -13,21 +13,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        fetch-depth: 0
-        ref: master
+        ref: stable-website
     - run: |
         git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
-        git checkout stable-website
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        echo $(git rev-parse HEAD)
-        echo $(git status)
-        echo $(git merge-base master stable-website)
-        echo "cherry picking $GITHUB_SHA"
-
         git cherry-pick ${{ github.sha }}
         git push origin stable-website
-
 
         #    - name: Hello world action step
         #      id: hello
