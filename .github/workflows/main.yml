@@ -1,8 +1,8 @@
-#on: [push]
-on:
-  pull_request:
-    types:
-      - closed
+on: [push]
+#on:
+#  pull_request:
+#    types:
+#      - closed
 
 jobs:
   hello_world_job:
@@ -12,10 +12,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      with:
-        ref: stable-website
     - run: |
         git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+        git checkout stable-website
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         echo $(git rev-parse HEAD)
