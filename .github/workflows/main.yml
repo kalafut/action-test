@@ -1,8 +1,8 @@
-on: [push]
-#on:
-#  pull_request:
-#    types:
-#      - closed 
+#on: [push]
+on:
+  pull_request:
+    types:
+      - closed
 
 jobs:
   hello_world_job:
@@ -20,12 +20,3 @@ jobs:
         git config --local user.name "GitHub Action"
         git cherry-pick ${{ github.sha }}
         git push origin stable-website
-
-        #    - name: Hello world action step
-        #      id: hello
-        #      uses: ./.github/actions/hello
-        #      with:
-        #        who-to-greet: 'Mona the Octocat'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
