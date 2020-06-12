@@ -6,26 +6,17 @@ on:
 
 jobs:
   hello_world_job:
-    if: github.event.pull_request.merged && contains( github.event.pull_request.labels.*.name, 'docs')
+    #if: github.event.pull_request.merged && contains( github.event.pull_request.labels.*.name, 'docs')
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        branch: stable-website
+        ref: stable-website
     - run: |
+        git fetch --no-tags --prune origin master
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git cherry-pick $GITHUB_SHA
+        git cherry-pick ${{ github.sha }}
         git push origin stable-website
-
-
-        #    - name: Hello world action step
-        #      id: hello
-        #      uses: ./.github/actions/hello
-        #      with:
-        #        who-to-greet: 'Mona the Octocat'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
